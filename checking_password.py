@@ -4,12 +4,11 @@ from base64 import b64encode
 from getpass import getpass
 
 password = getpass('Enter the pasword: ')
-symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '\'', '\"', ',', '.']
 level = ''
 
 if len(password) >= 12:
 	for c in password:
-		if c in symbols:
+		if ord(c) in range(33, 48):
 			level = 'Too simple'
 			break
 	for c in password:
