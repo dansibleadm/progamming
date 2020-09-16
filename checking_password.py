@@ -3,25 +3,24 @@ from base64 import b64encode
 
 from getpass import getpass
 
-password = getpass('Enter the pasword: ')
-level = ''
+password = getpass('[+] Enter the password: ')
+level_dct = dict(level=0, levels=['Short', 'Simple', 'Normal', 'Hard'])
 
 if len(password) >= 12:
 	for c in password:
 		if ord(c) in range(33, 48):
-			level = 'Too simple'
+			level_dct['level'] += 1
 			break
 	for c in password:
 		if c.isdigit():
-			level = 'Normal'
+			level_dct['level'] += 1
 			break
 	for c in password:
 		if c.isupper():
-			level = 'Hard'
+			level_dct['level'] += 1
 			break
-else:
-	level = 'Too short'
-	exit()
 
-print(level)
-print('Your password {}'.format(md5(b64encode(password.encode())).hexdigest()))
+print('[^] Level {level}\n[*] Your password {password}'.format(
+																password=md5(b64encode(password.encode())).hexdigest(), 
+																level=level_dct['levels'][level_dct['level']])
+																)
