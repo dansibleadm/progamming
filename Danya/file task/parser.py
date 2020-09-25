@@ -42,6 +42,7 @@ class Pasrer:
 
 		self.new_accounts = buff
 		with open("new_" + self.filename, "w") as file:
+			file.write('EMAIL, NAME, LAST_NAME, TEL, CITY\n')
 			file.write(self.new_accounts)
 
 	def set_emails(self):
